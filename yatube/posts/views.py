@@ -13,7 +13,7 @@ def index(request):
         'title': title,
         'posts': posts,
         'slug_list': slug_list
-        }
+    }
     return render(request, 'posts/index.html', context)
 
 
