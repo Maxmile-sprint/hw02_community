@@ -1,28 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
+POSTS_LIMIT = 10
 
-# Сreating a view-functions for receiving requests and generating responses.
-# View-function returns HTML-code from templates.
+
+# Сreating a view-functions for receiving requests and generating responses
+# for main page and page with community posts.
 
 def index(request):
-    title = 'Это главная страница проекта Yatube'
-    posts = Post.objects.order_by('-pub_date')[:10]
-    slug_list = Group.objects.values_list('slug', flat=True)[:]
+    posts = (Post.objects.select_related("author").all()
+             .order_by('-pub_date')[:POSTS_LIMIT])
     context = {
-        'title': title,
         'posts': posts,
-        'slug_list': slug_list
     }
     return render(request, 'posts/index.html', context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    title = group.title
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts_grp.order_by('-pub_date')[:POSTS_LIMIT]
     context = {
-        'title': title,
         'group': group,
         'posts': posts
     }

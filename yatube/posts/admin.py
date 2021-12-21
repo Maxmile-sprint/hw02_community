@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import Post, Group
 
-# Register your models here.
+# Creating the PostAdmin class to configure the display
+# of the model Post from 'posts/models.py'.
 
 
 class PostAdmin(admin.ModelAdmin):

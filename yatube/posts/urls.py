@@ -1,9 +1,7 @@
 from django.urls import path
 from . import views
 
-# Namespace declaration.
 app_name = 'posts'
-
 
 urlpatterns = [
     # Create a path function for main page

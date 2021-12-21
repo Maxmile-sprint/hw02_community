@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-# Сreating special classes(Models) for working with databases.
 
 User = get_user_model()
 
+
+# Сreating Group model for generate community.
 
 class Group(models.Model):
 
@@ -16,13 +17,16 @@ class Group(models.Model):
         return self.title
 
 
+# Сreating Post model for storing posts.
+
 class Post(models.Model):
 
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name='posts')
+                               related_name='posts_usr')
     group = models.ForeignKey(Group,
                               on_delete=models.SET_NULL,
-                              blank=True, null=True)
+                              blank=True, null=True,
+                              related_name='posts_grp')
