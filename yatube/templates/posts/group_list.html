@@ -8,8 +8,8 @@
         <p>
           {{ group.description }}
         </p>
-        <article>
-          {% for post in posts %}
+        {% for post in posts %}
+        <article>          
           <ul>
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -20,11 +20,10 @@
           </ul>
           <p>
             {{ post.text }}
-          </p>
-          {% if not forloop.last %}<hr>{% endif %}
-        {% endfor %}
+          </p>          
         </article>
-        <hr>
+        {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %}
         <!-- под последним постом нет линии -->
       </div>
 {% endblock %}

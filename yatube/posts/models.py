@@ -5,8 +5,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-# Сreating Group model for generate community.
-
 class Group(models.Model):
 
     title = models.CharField(max_length=200)
@@ -16,8 +14,6 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
-
-# Сreating Post model for storing posts.
 
 class Post(models.Model):
 
@@ -30,3 +26,6 @@ class Post(models.Model):
                               on_delete=models.SET_NULL,
                               blank=True, null=True,
                               related_name='posts_grp')
+
+    class Meta:
+        ordering = ["-pub_date"]

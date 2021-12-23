@@ -4,12 +4,8 @@ from .models import Post, Group
 POSTS_LIMIT = 10
 
 
-# Сreating a view-functions for receiving requests and generating responses
-# for main page and page with community posts.
-
 def index(request):
-    posts = (Post.objects.select_related("author").all()
-             .order_by('-pub_date')[:POSTS_LIMIT])
+    posts = Post.objects.select_related("author").all()[:POSTS_LIMIT]
     context = {
         'posts': posts,
     }
@@ -18,7 +14,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts_grp.order_by('-pub_date')[:POSTS_LIMIT]
+    posts = group.posts_grp.all()[:POSTS_LIMIT]
     context = {
         'group': group,
         'posts': posts

@@ -28,8 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts.apps.PostsConfig',  # register a new app
+    'posts.apps.PostsConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,14 +50,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'yatube.urls'
 
-# The path to the directory with templates is placed in a variable.
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # Search for templates at the project level.
         'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,6 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Assigning a directory to store static files.
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
